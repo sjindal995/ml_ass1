@@ -58,5 +58,6 @@ function theta = logistic( file1, file2, epsilon )
     xx = x(:,2);
     yy = -(theta(1) + theta(2)*xx)/theta(3);
     plot(xx,yy);
+    hold on;
 end
 

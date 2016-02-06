@@ -19,5 +19,6 @@ function theta = weightLR( file1, file2, bw)
     xy = [x(:,2) y_est];
     xy = sortrows(xy);
     plot(xy(:,1),xy(:,2),x(:,2),y,'.');
+    hold on;
 end
 

@@ -8,7 +8,6 @@ function [mean_0,mean_1,covar,phi] = gda( file1, file2 )
     x_1 = [];
     y_0 = [];
     y_1 = [];
-    %Alaska = 0 , Canada = 1
     for index0 = 1:m
         if(strcmp(y(index0), 'Alaska'))
             x_0 = [x_0; x(index0,:)];
@@ -34,11 +33,15 @@ function [mean_0,mean_1,covar,phi] = gda( file1, file2 )
     hold on;
     %log(k)=0 => b'x + c = 0
     b = (mean_1-mean_0)*2*(inv(covar));
-    c = mean_0*inv(covar)*(mean_0') - mean_1*inv(covar)*mean_1' - 2*log((1-phi)/phi);
+    c = mean_0*inv(covar)*(mean_0') - mean_1*inv(covar)*mean_1';
     xx = x(:,1);
     disp('size:');
     disp(size(mean_0*inv(covar)));
     yy = -(b(1)*xx + c)/b(2);
     plot(xx,yy);
-    hold on;
+    
+    covar_0 = zeros(n,n);
+    covar_1 = zeros(n,n);
+    for index2 = 1:m
+    end
 end
