@@ -25,24 +25,20 @@ function theta = linearRegression( file1, file2, l_rate, epsilon )
     end
     error_mat = [];
     iterations = size(theta_vec,2);
-    disp(theta_vec);
-    for index1 = 1:51
-        for index2 = 1:51
-            theta1 = (index1-1)/5;
-            theta2 = (index2-1)/5;
+    for index1 = 1:iterations
+        for index2 = 1:iterations
             error = 0;
             for index4 = 1:m
-                error = error + ((y(index4) - x(index4,1)*theta1 - x(index4,2)*theta2)^2);
+                error = error + ((y(index4) - x(index4,1)*theta_vec(1,index1) - x(index4,2)*theta_vec(2,index2))^2);
             end
             error = error/(2*m);
-            %disp(error);
+            disp(error);
             error_mat(index1,index2) = error;
         end
     end
     %plot(importdata(file1),x*theta,importdata(file1),importdata(file2),'.');
-    x1 = [1 : 1 : 51];
-    x2 = [1 : 1 : 51];
-    surf((x1-1)/5,(x2-1)/5,error_mat(x1,x2),'EdgeColor','none');
-    %contour((x1-1)/5,(x2-1)/5,error_mat(x1,x2));
+    x1 = [1 : 1 : size(theta_vec,2)];
+    x2 = [1 : 1 : size(theta_vec,2)];
+    surf(theta_vec(1,x1),theta_vec(2,x2),error_mat(x1,x2));
 end
 
